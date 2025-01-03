@@ -198,40 +198,41 @@
 
             return React.createElement(
                 "div",
-                { className: "inner-container", id: "drum-machine" },
-                React.createElement(PadBank, {
-                    clipVolume: this.state.sliderVal,
-                    currentPadBank: this.state.currentPadBank,
-                    power: this.state.power,
-                    updateDisplay: this.displayClipName
-                }),
-                React.createElement("div", { className: "logo" },
-                    React.createElement("div", { className: "inner-logo" }, "FCC" + String.fromCharCode(160)),
-                    React.createElement("i", { className: "inner-logo fa fa-free-code-camp" })
+                { id: "drum-machine" },
+                React.createElement(
+                    "div",
+                    { id: "display" },
+                    React.createElement("h1", null, this.state.display)
                 ),
-                React.createElement("div", { className: "controls-container" },
-                    React.createElement("div", { className: "control" },
-                        React.createElement("p", null, "Power"),
-                        React.createElement("div", { className: "select", onClick: this.powerControl },
-                            React.createElement("div", { className: "inner", style: powerStyle })
-                        )
-                    ),
-                    React.createElement("p", { id: "display" }, this.state.display),
-                    React.createElement("div", { className: "volume-slider" },
-                        React.createElement("input", {
-                            max: "1", min: "0", onChange: this.adjustVolume, step: "0.01", type: "range", value: this.state.sliderVal
-                        })
-                    ),
-                    React.createElement("div", { className: "control" },
-                        React.createElement("p", null, "Bank"),
-                        React.createElement("div", { className: "select", onClick: this.selectBank },
-                            React.createElement("div", { className: "inner", style: bankStyle })
-                        )
-                    )
+                React.createElement(
+                    "div",
+                    { id: "drum-pads" },
+                    React.createElement(PadBank, {
+                        currentPadBank: this.state.currentPadBank,
+                        power: this.state.power,
+                        updateDisplay: this.displayClipName
+                    })
+                ),
+                React.createElement(
+                    "div",
+                    { id: "controls" },
+                    React.createElement("button", { className: "control-btn", id: "power", onClick: this.powerControl }, "Power"),
+                    React.createElement("button", { className: "control-btn", id: "bank", onClick: this.selectBank, style: bankStyle }, "Bank"),
+                    React.createElement("input", {
+                        className: "control-btn",
+                        id: "volume",
+                        type: "range",
+                        min: 0,
+                        max: 1,
+                        step: 0.01,
+                        value: this.state.sliderVal,
+                        onChange: this.adjustVolume
+                    }),
+                    React.createElement("label", { className: "control-btn", htmlFor: "volume" }, "Volume")
                 )
             );
         }
     }
 
-    ReactDOM.render(React.createElement(App, null), document.getElementById("root"));
+    ReactDOM.render(React.createElement(App), document.getElementById("root"));
 })();
